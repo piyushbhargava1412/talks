@@ -430,7 +430,7 @@ advertised, and the moment of failure comes earlier than you think.
 ````md magic-move {lines: false}
 ```jsonc
 // what it feels like you sent
-{ "message": "fix the failing test" }
+{ "message": "Which database did we decide on, and why?" }
 ```
 
 ```jsonc
@@ -439,7 +439,7 @@ advertised, and the moment of failure comes earlier than you think.
   "system": "You are a coding agent. Follow AGENTS.md...",  //  4,200 tok
   "tools":  [ read, write, bash, grep, ...20 more ],        // 12,000 tok
   "messages": [
-    { "role": "user", "content": "fix the failing test" }   //    180 tok
+    { "role": "user", "content": "Which database did we decide on, and why?" }   //    180 tok
   ]
 }
 ```
@@ -453,7 +453,7 @@ advertised, and the moment of failure comes earlier than you think.
     /* turns 1-39: every question, every answer, every    */ // 121,000 tok
     /* tool call, every file it read, every stack trace,  */ //  58,000 tok
     /* and every wrong guess it already made              */
-    { "role": "user", "content": "fix the failing test" }    //     180 tok
+    { "role": "user", "content": "Which database did we decide on, and why?" }    //     180 tok
   ]
 }
 ```
@@ -693,16 +693,16 @@ clicks: 2
 
 <CostCurve :series="$clicks + 1" />
 
-<div v-click="1" class="mt-1 grid grid-cols-3 gap-5">
+<div class="mt-1 grid grid-cols-3 gap-5">
   <SketchBox seed="c1" color="var(--s1)">
     <p>naive · <span class="metric">4.10M</span> input tokens</p>
     <p class="text-[var(--ink-3)]">≈ <span class="metric">$20.50</span> at Opus rates</p>
   </SketchBox>
-  <SketchBox seed="c2" color="var(--s2)">
+  <SketchBox v-click="1" seed="c2" color="var(--s2)">
     <p>engineered · <span class="metric">1.40M</span></p>
     <p class="text-[var(--ink-3)]">≈ <span class="metric">$7.00</span></p>
   </SketchBox>
-  <SketchBox seed="c3" color="var(--ink-2)">
+  <SketchBox v-click="2" seed="c3" color="var(--ink-2)">
     <p>and the cheap one</p>
     <p class="text-[var(--ink-3)]">is also the one that <strong>works</strong></p>
   </SketchBox>
@@ -713,8 +713,11 @@ The arithmetic is deliberately checkable on stage — the model is stateless, so
 cumulative input = the sum of the context size at each turn. Naive: context
 grows 5K→200K over 40 turns, so ~40 × 102.5K. Engineered: 40 × 35K flat.
 
-Make the last box the point. Nobody in the room is here to save $13. They're
-here because the 4.1M run produces worse code.
+Click 0: naive line + naive box only.
+Click 1: engineered line appears alongside its box.
+Click 2: the ratio callout on the graph ("3.0x the input tokens...") and the
+closing box land together — make the last box the point. Nobody in the room
+is here to save $13. They're here because the 4.1M run produces worse code.
 -->
 
 ---
@@ -847,8 +850,8 @@ class: text-center
 ---
 
 <p class="statement max-w-[42rem] mx-auto">
-  Compaction is the seatbelt.<br>
-  <span class="dim">Don't drive at it on purpose.</span>
+  Compaction is the airbag.<br>
+  <span class="dim">Don't aim for the wall.</span>
 </p>
 
 ---

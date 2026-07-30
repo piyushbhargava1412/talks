@@ -50,7 +50,11 @@ for (const talk of talks) {
       `--base "${base}"`,
       `--out "${out}"`,
       '--router-mode hash', // subdirectory-safe routing, no server rewrites needed
-      '--without-notes', // keep presenter notes out of the public bundle
+      // Notes ship in the public build on purpose: once a talk's repo is
+      // public, its slides.md (notes included) is already readable on
+      // GitHub, so stripping them here buys no privacy — it only breaks
+      // presenter mode on the live URL. Add --without-notes back per-talk
+      // if a repo is ever kept private specifically to protect notes.
     ].join(' '),
     { cwd: dir, stdio: 'inherit' },
   )

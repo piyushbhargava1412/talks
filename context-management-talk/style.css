@@ -167,10 +167,13 @@ html.dark body {
   color: var(--ink);
 }
 
-.statement {
+/* Higher specificity than the theme's ".slidev-layout p { line-height:
+   1.5rem }" — a bare ".statement" selector loses that fight and silently
+   keeps the theme's cramped 24px line-height regardless of what's set here. */
+.slidev-layout .statement {
   font-family: var(--slidev-theme-fontFamily-serif, cursive);
   font-size: 3.2rem;
-  line-height: 1.15;
+  line-height: 1.55;
   color: var(--ink);
 }
 

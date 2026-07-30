@@ -17,9 +17,9 @@ import { palette, pencil, sketch, seedOf } from '../utils/sketch'
  */
 const props = withDefaults(defineProps<{
   turns?: number
-  /** 1 = naive only, 2 = both series */
+  /** 1 = naive only · 2 = both lines + legend · 3 = also reveal the ratio callout */
   series?: number
-}>(), { turns: 40, series: 2 })
+}>(), { turns: 40, series: 3 })
 
 const W = 900
 const H = 296
@@ -109,7 +109,7 @@ watch(() => [props.series, props.turns], draw)
         <li><span class="cc__key" style="background: var(--s1)" />naive — context keeps growing</li>
         <li v-if="series >= 2"><span class="cc__key" style="background: var(--s2)" />engineered — context held flat</li>
       </ul>
-      <p v-if="series >= 2" class="cc__ratio">
+      <p v-if="series >= 3" class="cc__ratio">
         <span class="metric">{{ ratio }}×</span> the input tokens, for the same work
       </p>
     </div>
