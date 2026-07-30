@@ -311,7 +311,7 @@ clicks: 6
     { label: 'tool + MCP schemas', tokens: 12000, slot: 2, note: 're-sent every single turn' },
     { label: 'conversation history', tokens: 42000, slot: 3, note: 'grows forever, by default' },
     { label: 'tool results', tokens: 39000, slot: 4, note: 'greps, test output, stack traces' },
-    { label: 'files it read', tokens: 31000, slot: 4, note: 'the sleeper cost' },
+    { label: 'files it read', tokens: 31000, slot: 6, note: 'the sleeper cost' },
     { label: 'your actual turn', tokens: 180, slot: 5, note: '0.1% of the payload' },
   ]"
 />

@@ -10,7 +10,7 @@ import { filled, hatched, palette, pencil, sketch, seedOf, slot as slotColor } f
 interface Segment {
   label: string
   tokens: number
-  /** categorical slot 1-5; defaults to position */
+  /** categorical slot 1-6; defaults to position */
   slot?: number
   note?: string
 }

@@ -37,6 +37,7 @@ export function palette(): Record<string, string> {
     s3: read('--s3', '#199e70'),
     s4: read('--s4', '#c98500'),
     s5: read('--s5', '#d55181'),
+    s6: read('--s6', '#9085e9'),
     good: read('--st-good', '#0ca30c'),
     warn: read('--st-warn', '#fab219'),
     crit: read('--st-crit', '#d03b3b'),
@@ -47,7 +48,7 @@ export function palette(): Record<string, string> {
 /** Categorical slot by 1-based index, never cycled past 5. */
 export function slot(n: number): string {
   const p = palette()
-  return p[`s${Math.min(Math.max(n, 1), 5)}`]
+  return p[`s${Math.min(Math.max(n, 1), 6)}`]
 }
 
 /** Base pencil stroke. */

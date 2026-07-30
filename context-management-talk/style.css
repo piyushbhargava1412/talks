@@ -47,12 +47,16 @@
   --ink-2: #b3b0a4;
   --ink-3: #85837a;
 
-  /* categorical slots — fixed order, never cycled */
+  /* categorical slots — fixed order, never cycled. Six-checks-validated
+     (lightness band, chroma floor, CVD separation, normal-vision floor,
+     contrast) against the dark surface below, in the exact adjacency each
+     slide actually renders them in — re-validate before adding a 7th. */
   --s1: #3987e5; /* blue    · system & instructions */
   --s2: #d95926; /* orange  · tools & schemas */
   --s3: #199e70; /* aqua    · conversation history */
-  --s4: #c98500; /* yellow  · retrieved files & docs */
+  --s4: #c98500; /* yellow  · tool results / retrieved docs */
   --s5: #d55181; /* magenta · the actual ask */
+  --s6: #9085e9; /* violet  · files read (slide 10 6-segment breakdown) */
 
   /* status — reserved, always with an icon or label */
   --st-good: #0ca30c;
