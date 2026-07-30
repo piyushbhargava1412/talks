@@ -52,11 +52,10 @@ fonts:
 </div>
 
 <!--
-One breath of framing: this is not a prompt-tricks talk. It's about everything
+This is not a prompt-tricks talk. It's about everything
 *around* the prompt — the part you actually control.
 
 Hands up: who has had an agent go great for ten minutes and then fall apart?
-Keep that moment; you call back to it at the close.
 -->
 
 ---
@@ -108,10 +107,8 @@ class: px-14
 </div>
 
 <!--
-Identical question, word for word, asked twice in one session. This is a
-recall question, not a search problem — no one can object "why ask it twice,"
-because reconfirming an agreed decision mid-project is completely normal.
-
+Here's a typical scenario for you folks
+I am having an architectural discussion with CoPilot (Opus 5) and I ask a question still at say my 3rd prompt only
 Turn 3: fresh off the decision, small context, nails both the name AND the
 reason.
 
@@ -119,16 +116,9 @@ Turn 40, same session, nothing about the decision itself ever changed — just
 37 more turns of unrelated architecture discussion piled on top. Watch the bar:
 94.7%, rounds to 95%, right at the edge of what's usable.
 
-The database name survived — "Postgres" gets repeated constantly for 37 turns,
-so it's reinforced. The REASON was stated once, early, in prose, and that's
-exactly the kind of thing that gets buried in the middle or diluted first.
 So it doesn't say "I don't remember" — it confidently states a reason that's
 actually backwards: horizontal scaling is the argument FOR Dynamo, the option
 that lost. That's a real hallucination, not a lookup failure.
-
-Callback for later: this is the exact Postgres/Dynamo pair that resurfaces on
-the compaction slide in part five. Flag it here lightly ("hang on to this
-example") so the callback lands as a deliberate payoff, not a coincidence.
 -->
 
 ---
@@ -142,7 +132,6 @@ class: text-center
   when you say it.
 </p>
 
-<!-- The thesis. Say it, pause, move on. You repeat it at the close. -->
 
 ---
 layout: center
@@ -173,10 +162,6 @@ class: px-20
   </div>
 </div>
 
-<!--
-Twenty seconds. Tell them 06 is the practical part so the tactically-minded
-hang on through the concepts.
--->
 
 ---
 layout: section
@@ -186,7 +171,7 @@ layout: section
 
 # Words we'll use
 
-<!-- Two minutes. Nobody asks "what's a subagent?" out loud, so answer it up front. -->
+<!-- Before we dwell deeper, here is a quick brush up of some important terms -->
 
 ---
 clicks: 5
@@ -199,7 +184,6 @@ clicks: 5
 </div>
 
 <!--
-Build it click by click:
  1. HARNESS  — the app you're sitting in. It decides what gets loaded and when.
  2. SESSION  — one conversation. One budget. Ends when you close it.
  3. LEAD AGENT — the one you talk to. Owns the main window.
@@ -245,9 +229,8 @@ that's the harness's job, and it's the thing you're really tuning.
 </div>
 
 <!--
-Don't read the table. Say the one thing that matters: a skill's *description*
-is always loaded; its *body* is not. That's the mechanism behind half of
-part six.
+The one thing that matters: a skill's *description*
+is always loaded; its *body* is not. Also, skill is actually a prompt injected dynamically in a session
 -->
 
 ---
@@ -291,7 +274,6 @@ class: px-16
 </p>
 
 <!--
-The desk analogy carries the whole talk for the non-developers in the room.
 Buying a bigger desk doesn't help if you pile the whole filing cabinet on it.
 -->
 
@@ -375,9 +357,6 @@ claude-sonnet-5 · 23k/1000k tokens (2%)
 <!--
 Real numbers, real session, 1M window. Note Messages is literally 0 — this is
 the bill before the conversation starts.
-
-Then set up the next slide: one line in there is not what it looks like. Let
-someone spot "Buffer" if they're quick.
 -->
 
 ---
@@ -409,16 +388,9 @@ clicks: 3
 </div>
 
 <!--
-The point they came for: the advertised window is not the usable window.
-
 Why the buffer exists: the harness needs room to run the compaction summary
 itself. If it waited until the window was genuinely full, there'd be no space
 left to do the summarising in.
-
-So two numbers in your head are always wrong — the window is smaller than
-advertised, and the moment of failure comes earlier than you think.
-
-11% in this session. It varies by harness and window size; check yours.
 -->
 
 ---
@@ -460,7 +432,7 @@ advertised, and the moment of failure comes earlier than you think.
 ````
 
 <p v-click class="mt-5 text-2xl max-w-[44rem]">
-  The model is <strong>stateless</strong>. The "memory" is you, paying to re-upload it.
+  The model is <strong>stateless</strong>. The "memory" is what we create, and then pay to re-upload it.
 </p>
 
 <!--
@@ -529,13 +501,8 @@ clicks: 3
 </div>
 
 <!--
-The two-list shape is the point: descriptions load, bodies don't. That's
-progressive disclosure, and it's why a fat AGENTS.md is so expensive — it's on
+That's why a fat AGENTS.md is so expensive — it's on
 the LEFT list, paid on turn one and on every turn after.
-
-The bar is the same real session as two slides ago, with the autocompact
-buffer still hatched on the right. Working room is what's left between the
-coloured blocks and that strip.
 -->
 
 ---
@@ -585,8 +552,7 @@ class: px-16
 </p>
 
 <!--
-This is the highest-ROI slide in the deck for most people in the room — it's a
-15-minute change to a file they already have.
+This is the highest-ROI and the quickest refactor of a file you already have.
 -->
 
 ---
@@ -673,13 +639,12 @@ layoutClass: gap-12
 | cache **read** | ~0.1× input |
 | cache **write** | 1.25× (5 min) · 2× (1 hr) |
 
-<p class="text-[var(--ink-3)] text-sm mt-1">rates as of mid-2026 — check before you present</p>
+<p class="text-[var(--ink-3)] text-sm mt-1">rates as of mid-2026 — check before you consume</p>
 
 </div>
 
 <!--
-Caching is the honest counter-argument to this whole section, so raise it
-yourself: a stable prefix gets you ~90% off the re-upload. But note the two
+Caching is the honest counter-argument to this whole section, so let me be upfront: a stable prefix gets you ~90% off the re-upload. But note the two
 catches — it needs a byte-identical prefix (so a timestamp in your system
 prompt kills it), and it does nothing about attention. Cheap noise is still
 noise.
@@ -707,18 +672,6 @@ clicks: 2
     <p class="text-[var(--ink-3)]">is also the one that <strong>works</strong></p>
   </SketchBox>
 </div>
-
-<!--
-The arithmetic is deliberately checkable on stage — the model is stateless, so
-cumulative input = the sum of the context size at each turn. Naive: context
-grows 5K→200K over 40 turns, so ~40 × 102.5K. Engineered: 40 × 35K flat.
-
-Click 0: naive line + naive box only.
-Click 1: engineered line appears alongside its box.
-Click 2: the ratio callout on the graph ("3.0x the input tokens...") and the
-closing box land together — make the last box the point. Nobody in the room
-is here to save $13. They're here because the 4.1M run produces worse code.
--->
 
 ---
 layout: section
@@ -827,21 +780,7 @@ clicks: 4
 </div>
 
 <!--
-Callback: "Remember the database decision from the cold open?" — same
-Postgres/Dynamo pair. In the hook, the reasoning was just diluted — buried
-under 37 turns of chatter, so it confidently guessed wrong. This is the
-mechanism that makes it worse: compaction doesn't dilute, it actively
-DELETES the reasoning down to a keyword. "We chose Postgres over Dynamo
-because of the transactional requirement" becomes "chose Postgres." Ask it
-again after that and it isn't reconstructing a plausible-sounding wrong
-answer anymore — it may just flip the choice entirely, because the reason
-that anchored it is gone.
-
-Correct the common misconception explicitly: compaction is lossy
-SUMMARISATION, not truncation. Nothing is dropped outright; it's flattened.
-
-You don't control when it fires or what it keeps. Which is the whole argument
-for part six.
+Compaction is lossy SUMMARISATION, not truncation. Nothing is dropped outright; it's flattened.
 -->
 
 ---
@@ -861,8 +800,6 @@ layout: section
 <div class="kicker mb-3">Part six</div>
 
 # Seven moves
-
-<!-- The practical part. ~15 minutes. One idea per slide, all of them cheap to adopt. -->
 
 ---
 clicks: 2
@@ -886,10 +823,8 @@ clicks: 2
 </div>
 
 <!--
-Callback to the part-five slide — same chart, second series. Big visual payoff.
-
 The files are cheap and boring: spec.md, plan.md, review.md. The discipline is
-that stage N+1 reads the FILE, not the conversation.
+that stage N+1 reads the FILE, not the conversation. Even better if they are in a predefined format so that models can consume it deterministically
 
 Bonus nobody expects: this also survives compaction, because a file on disk
 isn't in the window at all.
@@ -1046,6 +981,10 @@ class: px-20
   Agents are good at finding things. Trust them to look, instead of pre-loading the library.
 </p>
 
+<!--
+On similar lines, you may have noticed that even the models now load a file in chunks, to let you optimise on the available context
+-->
+
 ---
 layout: center
 class: px-20
@@ -1120,14 +1059,6 @@ layoutClass: gap-10
 
 </div>
 
-<!--
-Say "shape" out loud — the curve is schematic, not measured. If you want it to
-carry evidence, cite a specific paper or your own eval.
-
-And note the cost angle: 1M of context at $5/MTok is $5 per turn. Nobody
-budgets for that.
--->
-
 ---
 layout: center
 clicks: 5
@@ -1143,11 +1074,6 @@ class: px-16
   <div v-click="4">— Send a subagent whenever the mess is bigger than the answer.</div>
   <div v-click="5">— Don't let compaction be your memory strategy.</div>
 </div>
-
-<!--
-Callback: that agent that fell apart after ten minutes at the start of the
-talk — now they know which of the six segments ate it.
--->
 
 ---
 layout: center
