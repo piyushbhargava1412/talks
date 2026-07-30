@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.output/
+
+# Slidev
+.slidev/
+components.d.ts
+.vite-inspect
+.remote-assets
+
+# Env / local overrides
+*.local
+.env
+.env.*
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*

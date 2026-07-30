@@ -1,0 +1,220 @@
+/* ───────────────────────────────────────────────────────────────
+   Context Engineering — hand-drawn (Excalidraw) theme
+   Dark canvas, chalk ink, Excalifont, rough.js shapes.
+
+   FONT: Excalifont is Excalidraw's own typeface (SIL Open Font
+   License) and is NOT on Google Fonts, so it is self-hosted.
+   Drop Excalifont-Regular.woff2 into public/fonts/ and it picks
+   up automatically; if the file is absent the stack below falls
+   back to a generic hand/cursive face and the deck still renders.
+   ─────────────────────────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'Excalifont';
+  src: url('/fonts/Excalifont-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* One hand font for everything, the way Excalidraw does it.
+   Chalkboard SE / Bradley Hand are macOS built-ins and keep the deck
+   hand-drawn if Excalifont-Regular.woff2 hasn't been added yet — but they
+   are LOCAL ONLY, so add the woff2 before exporting or presenting from
+   another machine. */
+:root {
+  --slidev-theme-fontFamily-sans: 'Excalifont', 'Chalkboard SE', 'Chalkboard', 'Bradley Hand', cursive !important;
+  --slidev-theme-fontFamily-serif: 'Excalifont', 'Chalkboard SE', 'Chalkboard', 'Bradley Hand', cursive !important;
+}
+
+/* ───────────────────────────────────────────────────────────────
+
+   Data colours come from the validated categorical palette
+   (six-checks validator, dark surface #1a1a19: lightness band,
+   chroma floor, CVD separation, normal-vision floor, contrast —
+   all PASS). Use the slots in order; don't hand-pick new ones.
+   ─────────────────────────────────────────────────────────────── */
+
+:root {
+  /* canvas */
+  --ctx-surface-1: #1a1a19;
+  --ctx-surface-2: #232322;
+  --ctx-track: #262625;
+  --ctx-line: #3a3a36;
+
+  /* chalk ink */
+  --ink: #e8e5da;
+  --ink-2: #b3b0a4;
+  --ink-3: #85837a;
+
+  /* categorical slots — fixed order, never cycled */
+  --s1: #3987e5; /* blue    · system & instructions */
+  --s2: #d95926; /* orange  · tools & schemas */
+  --s3: #199e70; /* aqua    · conversation history */
+  --s4: #c98500; /* yellow  · retrieved files & docs */
+  --s5: #d55181; /* magenta · the actual ask */
+
+  /* status — reserved, always with an icon or label */
+  --st-good: #0ca30c;
+  --st-warn: #fab219;
+  --st-crit: #d03b3b;
+}
+
+/* ── canvas ───────────────────────────────────────────────────── */
+
+html.dark,
+html.dark body {
+  background: var(--ctx-surface-1);
+}
+
+.slidev-layout {
+  background: var(--ctx-surface-1);
+  color: var(--ink-2);
+  --slidev-code-background: #201f1d;
+  font-size: 1.05rem;
+}
+
+/* Subtle paper grain so the dark canvas isn't a flat void */
+.slidev-layout::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background:
+    radial-gradient(60rem 40rem at 82% -8%, rgba(57, 135, 229, 0.07) 0%, transparent 64%),
+    radial-gradient(46rem 32rem at 4% 104%, rgba(217, 89, 38, 0.06) 0%, transparent 66%);
+}
+
+.slidev-layout > * {
+  position: relative;
+}
+
+/* ── handwriting ──────────────────────────────────────────────── */
+
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3 {
+  font-family: var(--slidev-theme-fontFamily-serif, cursive);
+  color: var(--ink);
+  font-weight: 700;
+  letter-spacing: 0.005em;
+  line-height: 1.08;
+}
+
+.slidev-layout h1 { font-size: 3.4rem; }
+.slidev-layout h2 { font-size: 2.7rem; margin-bottom: 1rem; }
+.slidev-layout h3 { font-size: 1.7rem; }
+
+.slidev-layout strong {
+  color: var(--ink);
+  font-weight: 400;
+  /* handwritten fonts have no real bold — underline instead */
+  background-image: linear-gradient(var(--st-warn), var(--st-warn));
+  background-repeat: no-repeat;
+  background-position: 0 92%;
+  background-size: 100% 2px;
+  padding-bottom: 1px;
+}
+
+.slidev-layout em {
+  color: var(--ink);
+  font-style: italic;
+}
+
+.slidev-layout code {
+  font-family: var(--slidev-theme-fontFamily-mono, monospace);
+  font-size: 0.82em;
+  color: var(--ink);
+}
+
+/* ── bullets: hand-drawn dashes, not discs ────────────────────── */
+
+.slidev-layout ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.slidev-layout ul > li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.55rem;
+  line-height: 1.5;
+}
+
+.slidev-layout ul > li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--ink-3);
+}
+
+.slidev-layout ul ul > li::before { content: '·'; }
+
+/* ── small parts ──────────────────────────────────────────────── */
+
+.kicker {
+  font-family: var(--slidev-theme-fontFamily-mono, monospace);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.metric {
+  font-family: var(--slidev-theme-fontFamily-mono, monospace);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.statement {
+  font-family: var(--slidev-theme-fontFamily-serif, cursive);
+  font-size: 3.2rem;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.statement .dim { color: var(--ink-3); }
+
+.slidev-layout table {
+  font-size: 0.86rem;
+  border-collapse: collapse;
+}
+
+.slidev-layout th {
+  text-align: left;
+  font-weight: 400;
+  color: var(--ink-3);
+  font-family: var(--slidev-theme-fontFamily-mono, monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.3rem 1rem 0.45rem 0;
+  border-bottom: 1px solid var(--ctx-line);
+}
+
+.slidev-layout td {
+  padding: 0.38rem 1rem 0.38rem 0;
+  border-bottom: 1px solid rgba(58, 58, 54, 0.5);
+  color: var(--ink-2);
+  vertical-align: top;
+}
+
+.slidev-layout td:first-child { color: var(--ink); }
+
+.slide-footer {
+  position: absolute;
+  bottom: 1rem;
+  left: 2.6rem;
+  right: 2.6rem;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--slidev-theme-fontFamily-mono, monospace);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* section dividers */
+.slidev-layout.section h1 { font-size: 4rem; }
