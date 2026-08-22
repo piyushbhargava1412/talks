@@ -512,14 +512,10 @@ class: text-center
 
 <p class="mt-3 text-lg !text-[var(--ink-3)]">(or bugs. I'll take bugs too.)</p>
 
-<div class="mt-10 flex justify-center gap-14">
+<div class="mt-10 w-full flex justify-center">
   <div class="text-center">
     <div class="qr-card"><img src="/images/qr-linkedin.svg" alt="QR code to Piyush Bhargava's LinkedIn profile" /></div>
     <div class="mt-2 kicker">Find me on LinkedIn</div>
-  </div>
-  <div class="text-center">
-    <div class="qr-card"><img src="/images/qr-arcus.svg" alt="QR code to the ARCUS plugin docs" /></div>
-    <div class="mt-2 kicker">try ARCUS yourself</div>
   </div>
 </div>
 
@@ -527,6 +523,12 @@ class: text-center
 
 <style>
 .qr-card {
+  /* text-align:center on the wrapper only centers inline content, not this
+     block-level div — and the wrapper's own width is set by its widest
+     child (the letter-spaced "FIND ME ON LINKEDIN" line, wider than the
+     card), so without margin:auto the card just sits flush-left in that
+     wider box. */
+  margin: 0 auto;
   background: #fff;
   padding: 0.7rem;
   border-radius: 0.5rem;
