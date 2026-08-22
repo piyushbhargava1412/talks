@@ -164,7 +164,7 @@ layout: two-cols-header
 layoutClass: gap-10
 ---
 
-## Great power. Tiny rate limit.
+## Great power. Real constraints.
 
 ::left::
 
@@ -185,9 +185,9 @@ layoutClass: gap-10
 <div class="kicker mb-2">What restricts</div>
 
 - usage limits — hourly, weekly, monthly
-- better quality costs more, always
-- heavier context switching
+- better quality comes at a heavy price
 - trust issues
+- higher context switching
 - a job. a family. a life outside the editor
 
 </div>
@@ -217,8 +217,8 @@ class: text-center
 ---
 
 <p class="statement max-w-[44rem] mx-auto">
-  So the fix isn't a better tool.<br>
-  It's a team that <span class="dim">isn't married to one host.</span>
+  So the fix isn't a better framework alone.<br>
+  It's the one that <span class="dim">isn't committed to one host.</span>
 </p>
 
 <div v-click class="mt-10 text-xl !text-[var(--ink-3)]">
@@ -236,12 +236,12 @@ class: px-14
 
 <div class="kicker mb-4">ARCUS — Any Repository Can Use Spec-driven development</div>
 
-<h2 class="mb-6">The Fellowship of the Spec</h2>
+<h2 class="mb-6">The Meta Skill and its agentic team</h2>
 
 <div class="grid grid-cols-4 gap-5">
   <SketchBox v-click="1" seed="lead" color="var(--s1)">
     <div class="kicker mb-1">Lucie · Lead</div>
-    <p class="text-base">Drives the team, owns the delivery</p>
+    <p class="text-base">My "meta-skill" - orchestrates the team, owns the delivery</p>
   </SketchBox>
   <SketchBox v-click="2" seed="arch" color="var(--s2)">
     <div class="kicker mb-1">Angelina · Architect</div>
@@ -258,7 +258,7 @@ class: px-14
 </div>
 
 <p v-click="5" class="mt-8 text-xl !text-[var(--ink-2)]">
-  One story at a time — and none of these four roles cares which host they're running on.
+  One story at a time — and none of them care which host they're running on.
 </p>
 
 <!--
@@ -404,7 +404,7 @@ it's a young feature catching up.
 class: px-10 pt-8 text-center
 ---
 
-## Ladies and gentlemen, an actual app
+## Alright folks .. Showtime !!
 
 <div class="mt-8 flex justify-center items-center gap-8 demo-row">
   <img src="/images/step-tracker-dashboard.png" class="demo-shot" alt="Step Tracker Pro dashboard: today's progress, active streaks, calendar heat-map" />
@@ -459,7 +459,7 @@ layout: center
 </div>
 
 <p v-click class="mt-8 text-lg !text-[var(--ink-2)]">
-  gamification and a maps tab are next — same team, same trick.
+  gamification stories are next — same team, same trick.
 </p>
 
 <!--
