@@ -37,25 +37,24 @@ const LOOP_X = 55
 
 const boxes = [
   { key: 'story', name: 'Story', role: 'the input', revealAt: 0, dashed: true, color: () => palette().ink3 },
-  { key: 'scaffold', name: 'Scaffold', role: 'setup', revealAt: 1, color: () => palette().ink3 },
-  { key: 'spec', name: 'Spec', role: 'Lead', revealAt: 2, color: () => palette().s1 },
-  { key: 'plan', name: 'Plan', role: 'Architect', revealAt: 3, color: () => palette().s2 },
-  { key: 'testplan', name: 'Test Plan', role: 'QA', revealAt: 4, color: () => palette().s4 },
-  { key: 'implement', name: 'Implement', role: 'Developer', revealAt: 5, color: () => palette().s3 },
-  { key: 'review', name: 'Review', role: 'QA', revealAt: 6, color: () => reviewColor() },
-  { key: 'pr', name: 'Pull Request', role: 'shipped', revealAt: 9, color: () => palette().good },
+  { key: 'scaffold', name: 'Scaffold', role: 'Lucie', revealAt: 1, color: () => palette().ink3 },
+  { key: 'spec', name: 'Spec', role: 'Angelina', revealAt: 2, color: () => palette().s1 },
+  { key: 'plan', name: 'Plan', role: 'Angelina', revealAt: 3, color: () => palette().s2 },
+  { key: 'testplan', name: 'Test Plan', role: 'Quinn', revealAt: 4, color: () => palette().s4 },
+  { key: 'implement', name: 'Implement', role: 'Diana', revealAt: 5, color: () => palette().s3 },
+  { key: 'review', name: 'Review', role: 'Quinn', revealAt: 6, color: () => reviewColor() },
+  { key: 'pr', name: 'Pull Request', role: 'Lucie', revealAt: 9, color: () => palette().good },
 ]
 
 const H = Y0 + boxes.length * STEP + 10
 
 const reviewColor = () => (props.step >= 8 ? palette().good : palette().warn)
 const reviewLabel = computed(() => {
-  if (props.step >= 8) return 'QA · approved'
-  if (props.step >= 6) return 'QA · round 1'
+  if (props.step >= 8) return 'Quinn · approved'
+  if (props.step >= 6) return 'Quinn · round 1'
   return 'QA'
 })
 
-const svg = ref<SVGSVGElement>()
 const layer = ref<SVGGElement>()
 
 function boxY(i: number) { return Y0 + i * STEP }

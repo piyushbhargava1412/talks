@@ -24,10 +24,10 @@ const X0 = 20
 const Y = 60
 
 const stops = [
-  { key: 'claude', host: 'Claude', model: '', status: '5h clock: buzzer', color: () => palette().s1 },
-  { key: 'claude', host: 'Claude', model: '', status: 'weekly cap: also hit', color: () => palette().s2 },
+  { key: 'claude', host: 'Claude', model: 'Opus 5· Sonnet 5', status: '5h clock: buzzer', color: () => palette().s1 },
+  { key: 'claude', host: 'Claude', model: 'Opus 5· Sonnet 5', status: 'weekly cap: also hit', color: () => palette().s2 },
   { key: 'opencode1', host: 'OpenCode', model: 'DeepSeek V4 Flash · free', status: 'daily tokens: gone', color: () => palette().s4 },
-  { key: 'opencode2', host: 'OpenCode', model: 'Qwen3.8-27B · local', status: 'no cap, no laptop for you', color: () => palette().good },
+  { key: 'opencode2', host: 'OpenCode', model: 'Qwen3.8-27B · LM Studio', status: 'local, free, takes over laptop', color: () => palette().good },
 ]
 
 const layer = ref<SVGGElement>()

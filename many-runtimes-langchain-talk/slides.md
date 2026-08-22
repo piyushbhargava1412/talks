@@ -351,6 +351,24 @@ fans, and the fact that I can't open Slack while it's thinking.
 
 ---
 layout: center
+class: text-center
+---
+
+<p class="statement max-w-[42rem] mx-auto">
+  The local model works<br><span class="dim">while I sleep.</span>
+</p>
+
+<p v-click class="mt-8 text-lg !text-[var(--ink-3)] max-w-[36rem] mx-auto">
+  close every other tab, let it run overnight — local compute is slow, but does not burn tokens a.k.a $$$
+</p>
+
+<!--
+Quick beat, not a deep dive on local inference — the point is just that the
+same meta-skill reaches all the way down to a model on your own machine.
+-->
+
+---
+layout: center
 clicks: 5
 class: px-16
 ---
@@ -380,24 +398,6 @@ denylist does anything at all, with zero error either way.
 Point 5: GitHub's own open issue tracker has a live "Tool Scoping for
 Sub-Agents" feature request (github/copilot-cli#2992) — this isn't a dig,
 it's a young feature catching up.
--->
-
----
-layout: center
-class: text-center
----
-
-<p class="statement max-w-[42rem] mx-auto">
-  The local model works<br><span class="dim">while I sleep.</span>
-</p>
-
-<p v-click class="mt-8 text-lg !text-[var(--ink-3)] max-w-[36rem] mx-auto">
-  close every other tab, let it run overnight — local compute is slow, and does not burn tokens a.k.a $$$
-</p>
-
-<!--
-Quick beat, not a deep dive on local inference — the point is just that the
-same meta-skill reaches all the way down to a model on your own machine.
 -->
 
 ---
