@@ -1,0 +1,16 @@
+{
+  "note": "Anonymised from benchmark-runner's published CI judgements (hidden test graded, current rubric). Cell: [passed, n, median credits, median minutes]. Ticket A = one-line bug fix, B = 5-point Java story, C = frontend story, D = multi-component JS story. X = plugin 0.17, X++ = plugin 0.20.",
+  "columns": [
+    { "key": "A", "label": "Ticket A", "sub": "bug fix" },
+    { "key": "B", "label": "Ticket B", "sub": "5-pt story" },
+    { "key": "C", "label": "Ticket C", "sub": "frontend" },
+    { "key": "D", "label": "Ticket D", "sub": "multi-component" }
+  ],
+  "rows": [
+    { "key": "v-opus", "label": "vanilla", "model": "opus-5.5", "cells": { "A": [1, 1, 56, 6], "B": [1, 1, 224, 16], "C": [1, 1, 132, 12] } },
+    { "key": "v-sonnet", "label": "vanilla", "model": "sonnet-5", "cells": { "A": [1, 1, 87, 7], "D": [1, 1, 706, 25] } },
+    { "key": "x-opus", "label": "arcus X", "model": "opus-5.5", "cells": { "A": [1, 1, 465, 24], "B": [1, 1, 741, 35], "C": [1, 1, 1097, 128] } },
+    { "key": "xpp-opus", "label": "arcus X++", "model": "opus-5.5", "cells": { "A": [1, 1, 222, 14], "B": [0, 1, 741, 32], "C": [1, 1, 1079, 95] } },
+    { "key": "xpp-sonnet", "label": "arcus X++", "model": "sonnet-5", "cells": { "A": [1, 1, 315, 19], "D": [0, 1, 1447, 74] } }
+  ]
+}
