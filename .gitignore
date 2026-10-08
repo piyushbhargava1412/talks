@@ -5,6 +5,7 @@ node_modules/
 dist/
 .output/
 /site/
+*.pptx
 
 # Slidev
 .slidev/
@@ -32,3 +33,4 @@ pnpm-debug.log*
 
 # --- ARCUS Artifacts ---
 .arcus/
+.claude/
