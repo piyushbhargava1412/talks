@@ -215,49 +215,97 @@ engineering. [click] Better on tokens.
 -->
 
 ---
-clicks: 4
+clicks: 6
 class: px-10 pt-8
 ---
 
-<div class="kicker">Benchmarks, and their fine print</div>
+<div class="kicker">Benchmarking is old news</div>
 
-## Every industry tests its claims
+## What a benchmark brings
 
-<div class="grid grid-cols-3 gap-5 mt-4">
-  <SketchBox v-click="1" tone="s1" seed="bm-crash"><div class="text-3xl">🚗</div><div class="card-list"><b>Crash tests</b> rate a car against a published standard, not the maker's brochure.</div></SketchBox>
-  <SketchBox v-click="2" tone="s1" seed="bm-spec"><div class="text-3xl">🗄️</div><div class="card-list"><b>SPEC and TPC</b> let you compare CPUs and databases from rival vendors on the same workload.</div></SketchBox>
-  <SketchBox v-click="3" tone="crit" seed="bm-diesel" dashed><div class="text-3xl">🏭</div><div class="card-list"><b>The 2015 emissions scandal</b>: cars that detected the test and behaved only then. <span class="t-warn">A benchmark the product can see gets gamed.</span></div></SketchBox>
+<div class="grid grid-cols-5 gap-3 mt-6 lessons">
+  <SketchBox v-click="1" tone="s1" seed="ls-1">
+    <div class="ls-n">1 · 🗄️</div>
+    <div class="ls-t">A common workload</div>
+    <div class="ls-a">SPEC and TPC: rival CPUs and databases, one published workload.</div>
+  </SketchBox>
+  <SketchBox v-click="2" tone="s3" seed="ls-2">
+    <div class="ls-n">2 · 🚗</div>
+    <div class="ls-t">An independent grader</div>
+    <div class="ls-a">Crash tests: a published standard, not the maker's brochure. TPC results are audited.</div>
+  </SketchBox>
+  <SketchBox v-click="3" tone="crit" seed="ls-3">
+    <div class="ls-n">3 · 🏭</div>
+    <div class="ls-t">A hidden answer key</div>
+    <div class="ls-a">2015: cars that spotted the emissions test, and behaved only while it ran.</div>
+  </SketchBox>
+  <SketchBox v-click="4" tone="s6" seed="ls-4">
+    <div class="ls-n">4 · 📊</div>
+    <div class="ls-t">Fingerprinted numbers</div>
+    <div class="ls-a">Opus 5.5, Terminal-Bench 4.0: 66.4% vendor, 59.6% independent. Same model.</div>
+  </SketchBox>
+  <SketchBox v-click="5" tone="s4" seed="ls-5">
+    <div class="ls-n">5 · 💰</div>
+    <div class="ls-t">Cost next to score</div>
+    <div class="ls-a">TPC reports dollars per transaction, not just speed.</div>
+  </SketchBox>
 </div>
 
-<div v-click="4" class="grid grid-cols-[1.25fr_1fr] gap-8 mt-6 items-center">
-  <div>
-    <div class="card-title">models too · Opus 5.5 on Terminal-Bench 4.0</div>
-    <TwoBars />
-  </div>
-  <div class="space-y-3">
-    <div class="card-list">Same model, same benchmark, different harness and effort. And the default effort just moved from <b>high</b> to <b>medium</b>.</div>
-    <div class="punchline">A number without its configuration is marketing.</div>
-  </div>
-</div>
+<div v-click="6" class="mt-10 punchline !text-2xl">Five promises. The rest of this talk is how we apply them for an agentic harness.</div>
+
+<style>
+.lessons :deep(.sb__body) { padding: 0.8rem 0.85rem 0.9rem; height: 100%; }
+.ls-n {
+  font-family: var(--slidev-theme-fontFamily-mono, monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+}
+.ls-t {
+  font-family: var(--slidev-theme-fontFamily-serif, cursive);
+  font-size: 1.3rem;
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 0.45rem 0 0.6rem;
+  min-height: 3.1rem;
+}
+.ls-a {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--ink-3);
+}
+</style>
 
 <!--
-None of this is new. [click] Cars are crash-tested against a published standard,
-not the maker's brochure. [click] Databases and CPUs from rival vendors are
-compared on SPEC and TPC workloads.
+Benchmarking isn't new. Every industry that makes claims has had to learn the
+same five lessons.
 
-[click] And the cautionary tale: in 2015, cars were caught detecting the
-emissions test and behaving only while it ran. A benchmark the product can see
-gets gamed. Remember that: it's why our answer key stays hidden.
+[click] One: a common workload. Rival CPUs and databases are compared on SPEC
+and TPC: the same published workload for everyone, so the numbers mean
+something side by side. Databases settled this in 1988.
 
-[click] Models go through this too. Opus 5.5 on Terminal-Bench 4.0: 66.4% as the
-vendor reported it, at the highest effort; 59.6% when an independent lab ran it
-in their own harness. Same model, seven points apart. And its default effort
-just changed from high to medium, so "out of the box" isn't "at its best".
-A number without its configuration is marketing.
+[click] Two: an independent grader. A car is crash-tested against a published
+standard, not the maker's brochure. TPC results don't count until an auditor
+signs them off.
+
+[click] Three: a hidden answer key. In 2015, cars were caught recognising the
+emissions test and running clean only while it ran. A benchmark the product
+can see gets gamed. That's why our agent never sees the answers.
+
+[click] Four: fingerprinted numbers. Opus 5.5 on Terminal-Bench 4.0: 66.4% as
+the vendor reported it, at its highest effort; 59.6% when an independent lab ran
+it in their own harness. Same model, seven points apart, and its default effort
+just dropped to medium. A number without its configuration is marketing.
+
+[click] Five: cost next to the score. TPC reports dollars per transaction, not
+just speed. Fast and expensive is a different finding from fast.
+
+[click] Five promises. The rest of this talk is how we apply each one for an
+agentic harness.
 -->
 
 ---
-clicks: 5
+clicks: 6
 class: px-10 pt-8
 ---
 
@@ -267,8 +315,9 @@ class: px-10 pt-8
   <HarnessOnion :step="Math.min($clicks, 4)" />
   <div class="space-y-5">
     <div class="card-list text-lg">A harness is a framework built on top of a model: agents, skills, prompts, gates and a budget that together deliver a workflow.</div>
-    <div v-click="5" class="punchline">You ship the bundle, so you benchmark the bundle.</div>
-    <div v-click="5" class="card-list t-dim">Supabase does exactly this for its CLI, MCP server and skills: it benchmarks the tooling around the model, not the model.</div>
+    <div v-click="5" class="card-list text-lg t-ink">In this talk, a harness is everything you ship around the model, from story to pull request.</div>
+    <div v-click="6" class="punchline">You ship the bundle, so you benchmark the bundle.</div>
+    <div v-click="6" class="card-list t-dim">Supabase does exactly this for its CLI, MCP server and skills: it benchmarks the tooling around the model, not the model.</div>
   </div>
 </div>
 
@@ -276,6 +325,9 @@ class: px-10 pt-8
 So what is a harness? Start with the model. [click] Around it, agents and
 skills. [click] Prompts and rules. [click] Gates and reviews. [click] And a
 budget, in time and credits, around all of it.
+
+[click] So, in this talk, a harness is everything you ship around the model,
+from the story to the pull request.
 
 [click] Nobody ships the model alone. You ship the bundle, so you have to
 benchmark the bundle. Supabase recently published exactly this for their own
@@ -296,7 +348,7 @@ class: px-8 pt-6
 The one idea first, before any click: take a story a human team already
 delivered, give an agent the same starting point, and compare the two answers.
 
-[click] Prepare — the agent gets exactly what the developer got: the pre-PR
+[click] Prepare — the agent gets exactly what the developer got: the base
 commit and the story. The answer keys (the human's PR and the hidden test) go
 into a vault that never reaches the agent's machine.
 
@@ -331,7 +383,7 @@ class: px-10 pt-6
 
 <div class="zoom-head">
   <div>
-    <div class="kicker">The framework · 1 / 6</div>
+    <div class="kicker">The framework · 1 / 6<KeptPromise :n="[1, 3]" /></div>
     <h2>The fixture</h2>
     <div class="zoom-sub">A story a human team already delivered, frozen so anyone can replay it.</div>
   </div>
@@ -342,8 +394,8 @@ class: px-10 pt-6
   <FixtureLine :step="$clicks" />
   <div class="space-y-2">
     <SketchBox tone="s5" seed="fx-story"><div class="card-list"><b>The story</b>, exactly as the team got it</div></SketchBox>
-    <SketchBox tone="s5" seed="fx-pre"><div class="card-list"><b>pre-PR</b>: the commit the human started from</div></SketchBox>
-    <SketchBox tone="warn" seed="fx-at" dashed><div class="card-list">🔒 <b>at-PR</b>: the human's PR, the answer key</div></SketchBox>
+    <SketchBox tone="s5" seed="fx-pre"><div class="card-list"><b>base</b>: the commit the human started from</div></SketchBox>
+    <SketchBox tone="warn" seed="fx-at" dashed><div class="card-list">🔒 <b>reference</b>: the human's PR, the answer key</div></SketchBox>
     <SketchBox tone="warn" seed="fx-hidden" dashed><div class="card-list">🔒 <b>hidden acceptance test</b>: the second answer key</div></SketchBox>
     <SketchBox tone="good" seed="fx-gate"><div class="card-list"><b>quality gate</b>: the repo's own PR check</div></SketchBox>
     <SketchBox tone="ink3" seed="fx-tool"><div class="card-list"><b>toolchain</b>: e.g. the JDK the base builds on</div></SketchBox>
@@ -352,17 +404,17 @@ class: px-10 pt-6
 
 <!--
 A fixture is five things and a toolchain. The story, exactly as written for the
-team. pre-PR: the commit the human team started from. at-PR: their finished,
+team. The base: the commit the human team started from. The reference: their finished,
 human-coded and human-reviewed change, which is our answer key.
 
-[click] The hidden acceptance test, the second answer key. It fails at pre-PR
-because the behaviour isn't there yet, and passes at at-PR because the human
+[click] The hidden acceptance test, the second answer key. It fails on the base
+because the behaviour isn't there yet, and passes on the reference because the human
 built it. Red to green is the whole point: it tests the story, nothing else.
 
 [click] The quality gate, the repo's own PR check. Green at both ends: it
 proves nothing old broke.
 
-[click] And the agent starts exactly where the human did, at pre-PR, and
+[click] And the agent starts exactly where the human did, on the base, and
 produces its own answer. Everything after this compares the two.
 -->
 
@@ -373,7 +425,7 @@ class: px-10 pt-6
 
 <div class="zoom-head">
   <div>
-    <div class="kicker">The framework · 2 / 6</div>
+    <div class="kicker">The framework · 2 / 6<KeptPromise :n="[1]" /></div>
     <h2>Proving the fixture</h2>
     <div class="zoom-sub">Before a single credit is spent on an agent, the fixture has to prove itself.</div>
   </div>
@@ -383,15 +435,15 @@ class: px-10 pt-6
 <div class="grid grid-cols-3 gap-5">
   <SketchBox v-click="1" tone="s5" seed="pf-1">
     <div class="card-title">check 1 · it applies</div>
-    <div class="card-list">The human's PR applies cleanly at pre-PR.<div class="t-dim mt-2 text-sm">Otherwise the agent and the human didn't start from the same place.</div></div>
+    <div class="card-list">The human's PR applies cleanly to the base.<div class="t-dim mt-2 text-sm">Otherwise the agent and the human didn't start from the same place.</div></div>
   </SketchBox>
   <SketchBox v-click="2" tone="good" seed="pf-2">
     <div class="card-title">check 2 · it discriminates</div>
-    <div class="card-list">The hidden test is <span class="t-crit">red</span> at pre-PR and <span class="t-good">green</span> at at-PR.<div class="t-dim mt-2 text-sm">Otherwise it isn't testing this story.</div></div>
+    <div class="card-list">The hidden test is <span class="t-crit">red</span> on the base and <span class="t-good">green</span> on the reference.<div class="t-dim mt-2 text-sm">Otherwise it isn't testing this story.</div></div>
   </SketchBox>
   <SketchBox v-click="3" tone="s1" seed="pf-3">
     <div class="card-title">check 3 · it holds</div>
-    <div class="card-list">The gate is green at at-PR, on the same kind of machine that will grade.<div class="t-dim mt-2 text-sm">Prove where you grade, or the proof proves nothing.</div></div>
+    <div class="card-list">The gate is green on the reference, on the same kind of machine that will grade.<div class="t-dim mt-2 text-sm">Prove where you grade, or the proof proves nothing.</div></div>
   </SketchBox>
 </div>
 
@@ -406,13 +458,13 @@ class: px-10 pt-6
 <!--
 Three checks, run by code, before we trust a fixture.
 
-[click] It applies: the human's PR applies cleanly at pre-PR. If it doesn't,
+[click] It applies: the human's PR applies cleanly to the base. If it doesn't,
 we picked the wrong base, and the comparison is meaningless.
 
-[click] It discriminates: red at pre-PR, green at at-PR. A hidden test that is
-green at pre-PR isn't testing the story.
+[click] It discriminates: red on the base, green on the reference. A hidden test that is
+green on the base isn't testing the story.
 
-[click] It holds: the gate is green at at-PR, proven on the same kind of machine
+[click] It holds: the gate is green on the reference, proven on the same kind of machine
 that will do the grading. Prove where you grade.
 
 [click] And one rule for writing the hidden test: test behaviour, never names.
@@ -427,7 +479,7 @@ class: px-10 pt-6
 
 <div class="zoom-head">
   <div>
-    <div class="kicker">The framework · 3 / 6</div>
+    <div class="kicker">The framework · 3 / 6<KeptPromise :n="[3, 4]" /></div>
     <h2>The run</h2>
     <div class="zoom-sub">One harness, one model, one story, on a machine that has never seen the answers.</div>
   </div>
@@ -438,7 +490,7 @@ class: px-10 pt-6
   <SketchBox v-click="1" tone="s1" seed="rn-gets">
     <div class="card-title">the agent gets</div>
     <div class="card-list">
-      <div>a fresh copy of <b>pre-PR</b></div>
+      <div>a fresh copy of the <b>base</b></div>
       <div>the <b>story</b> and the repo's own rules</div>
       <div><code class="t-s1">harness@model</code>, e.g. <code>arcus@opus-5.5</code></div>
       <div>a hard <b>time limit</b></div>
@@ -455,7 +507,7 @@ class: px-10 pt-6
   <SketchBox v-click="3" tone="s4" seed="rn-leaves">
     <div class="card-title">the agent leaves behind</div>
     <div class="card-list">
-      <div><b>one diff</b> against pre-PR</div>
+      <div><b>one diff</b> against the base</div>
       <div>the <b>session log</b>: every tool call, every credit</div>
       <div>the harness's <b>own notes</b>: plan, spec, review</div>
       <div>a <b>manifest</b>: model asked for and model that answered, plugin <code>v0.20+c9c70c1</code>, minutes, credits</div>
@@ -463,12 +515,12 @@ class: px-10 pt-6
   </SketchBox>
 </div>
 
-<div v-click="3" class="mt-5 punchline">"main" moves, so a version alone isn't an identity. The commit is.</div>
+<div v-click="3" class="mt-5 punchline">The harness' own codebase keeps moving, so a version alone isn't an identity. The commit is.</div>
 
 <!--
 The run is deliberately boring.
 
-[click] The agent gets what the developer got: a fresh copy of pre-PR, the
+[click] The agent gets what the developer got: a fresh copy of the base, the
 story, the repo's own rules, a configured harness and model, and a time limit.
 
 [click] It never gets the answer keys. They're fetched only after it finishes,
@@ -480,13 +532,13 @@ main moves, and two runs of "0.20" can be two different plugins.
 -->
 
 ---
-clicks: 3
+clicks: 4
 class: px-10 pt-6
 ---
 
 <div class="zoom-head">
   <div>
-    <div class="kicker">The framework · 4 / 6</div>
+    <div class="kicker">The framework · 4 / 6<KeptPromise :n="[2, 5]" /></div>
     <h2>Judgement, part 1: code</h2>
     <div class="zoom-sub">Two questions with answers that aren't opinions. Code asks them first.</div>
   </div>
@@ -499,12 +551,12 @@ class: px-10 pt-6
     <div class="punchline !text-lg">Did it break anything?</div>
     <div class="card-list mt-2">The repo's own <b>quality gate</b>, run on the agent's tree, exactly as the team's PRs run it.</div>
   </SketchBox>
-  <SketchBox v-click="1" tone="good" seed="g-f2p">
+  <SketchBox v-click="2" tone="good" seed="g-f2p">
     <div class="card-title">fail-to-pass</div>
     <div class="punchline !text-lg">Does the story's behaviour exist?</div>
     <div class="card-list mt-2">The <b>hidden acceptance test</b>, written into the tree only now, then run.</div>
   </SketchBox>
-  <SketchBox v-click="3" tone="s3" seed="g-facts">
+  <SketchBox v-click="4" tone="s3" seed="g-facts">
     <div class="card-title">then: everything countable</div>
     <div class="card-list">
       <div>files touched vs the human's</div>
@@ -516,7 +568,7 @@ class: px-10 pt-6
   </SketchBox>
 </div>
 
-<div v-click="2" class="mt-5 flex gap-3 items-baseline">
+<div v-click="3" class="mt-5 flex gap-3 items-baseline">
   <span class="card-title !mb-0 whitespace-nowrap">three outcomes, not two</span>
   <span class="chip t-good">pass</span>
   <span class="chip t-crit">fail</span>
@@ -524,14 +576,15 @@ class: px-10 pt-6
   <span class="t-dim text-sm">a registry that said 401 is not the agent's fault, so it is never counted as a fail</span>
 </div>
 
-<div v-click="3" class="mt-4 punchline">No model does arithmetic. Free, repeatable, and it forms no opinion.</div>
+<div v-click="4" class="mt-4 punchline">No model does arithmetic. Free, repeatable, and it forms no opinion.</div>
 
 <!--
 Two questions have answers that aren't opinions, so code answers them before
 any model is asked anything.
 
 [click] Pass-to-pass: did it break anything? The repo's own quality gate.
-Fail-to-pass: does the behaviour the story asked for exist? The hidden test,
+
+[click] Fail-to-pass: does the behaviour the story asked for exist? The hidden test,
 written into the agent's tree only now, and run.
 
 [click] Three outcomes, not two. If the machine couldn't measure, say a
@@ -549,7 +602,7 @@ class: px-10 pt-6
 
 <div class="zoom-head">
   <div>
-    <div class="kicker">The framework · 5 / 6</div>
+    <div class="kicker">The framework · 5 / 6<KeptPromise :n="[2]" /></div>
     <h2>Judgement, part 2: an LLM on a leash</h2>
     <div class="zoom-sub">A model reads the code against the human's PR, inside rules that code enforces.</div>
   </div>
@@ -574,7 +627,7 @@ class: px-10 pt-6
       <span class="chip">pattern fidelity</span><span class="chip">test quality</span><span class="chip">verification depth</span>
       <span class="chip">auditability</span><span class="chip">process integrity</span><span class="chip">hygiene</span>
     </div>
-    <div class="t-dim text-sm mt-2">Scores communicate. Findings, pinned to a file and line, decide.</div>
+    <div class="t-dim text-sm mt-2">Scores summarise. Findings prove.</div>
   </SketchBox>
   <SketchBox v-click="2" tone="warn" seed="j-leash" dashed>
     <div class="card-title">the leash</div>
@@ -582,7 +635,7 @@ class: px-10 pt-6
       <div>the grade is given: <b>explain it, never overturn it</b></div>
       <div>the human's PR is a reference, not a standard</div>
       <div>account for every file either side touched</div>
-      <div>text in the code is data, not instructions</div>
+      <div>code comments are data, not prompt for the LLM Judge</div>
     </div>
   </SketchBox>
 </div>
@@ -605,7 +658,7 @@ It reads a read-only copy of the agent's code, both diffs, the story, the
 harness's own notes, and the grade and facts as givens.
 
 [click] It marks nine dimensions, from requirement coverage to hygiene. Scores
-are for communication; the findings, each pinned to a file, are the substance.
+are opinons. Findings are evidence that can be verified.
 
 [click] And it's on a leash. The grade is given: it may explain a red test, never
 overturn it. The human's PR is a reference, not the only right answer. It must
@@ -625,16 +678,16 @@ class: px-10 pt-6
 
 <div class="zoom-head">
   <div>
-    <div class="kicker">The framework · 6 / 6</div>
+    <div class="kicker">The framework · 6 / 6<KeptPromise :n="[5]" /></div>
     <h2>Comparison: two runs, one question</h2>
-    <div class="zoom-sub">Two judged runs of the same story, and the one thing you changed.</div>
+    <div class="zoom-sub">Two judged runs of the same story, and the things you changed.</div>
   </div>
   <FrameworkFlow :focus="['lane2', 'fair', 'compare']" class="zoom-map" />
 </div>
 
 <div class="flex gap-3 items-baseline mb-4">
   <span class="card-title !mb-0 whitespace-nowrap">the one thing you changed</span>
-  <span class="chip t-ink">harness</span><span class="t-dim">vs vanilla</span>
+  <span class="chip t-ink">harness</span><span class="t-dim">plugin vs vanilla</span>
   <span class="chip t-ink">plugin version</span><span class="t-dim">X vs X++</span>
   <span class="chip t-ink">model</span><span class="t-dim">opus vs sonnet</span>
 </div>
@@ -688,7 +741,7 @@ class: px-10 pt-6
 
 <div class="zoom-head">
   <div>
-    <div class="kicker">The framework · on every result</div>
+    <div class="kicker">The framework · on every result<KeptPromise :n="[4]" /></div>
     <h2>A mini system card</h2>
     <div class="zoom-sub">Every comparison opens by saying what was the same and what was not, before any verdict.</div>
   </div>
@@ -698,7 +751,7 @@ class: px-10 pt-6
 <table class="sc">
   <thead><tr><th></th><th>vanilla@opus-5.5</th><th>arcus@opus-5.5</th><th></th></tr></thead>
   <tbody>
-    <tr v-click="1"><td>story · pre-PR · answer key</td><td>Ticket B</td><td>Ticket B</td><td><span class="sc-tag sc-held">held constant</span></td></tr>
+    <tr v-click="1"><td>story · base · reference</td><td>Ticket B</td><td>Ticket B</td><td><span class="sc-tag sc-held">held constant</span></td></tr>
     <tr v-click="1"><td>model asked for · effort</td><td>opus-5.5 · medium</td><td>opus-5.5 · medium</td><td><span class="sc-tag sc-held">held constant</span></td></tr>
     <tr v-click="1"><td>judge · rubric · effort</td><td>opus-5 · <code>976e31</code> · high</td><td>opus-5 · <code>976e31</code> · high</td><td><span class="sc-tag sc-held">held constant</span></td></tr>
     <tr v-click="2"><td>plugin</td><td>none</td><td><code>v0.20+c9c70c1</code></td><td><span class="sc-tag sc-change">part of the change</span></td></tr>
@@ -742,8 +795,7 @@ a reason to refuse the comparison; it's a caveat the verdict has to carry, and
 the judge is told to prefer "neither" over a winner it can't separate from it.
 The CLI version is shown, but nobody chooses it, so it's never blamed.
 
-[click] A difference you were told about is a caveat. A difference nobody
-mentioned makes the verdict worthless.
+[click] If two runs differed in something besides what you were testing, and the report says so, you can still trust the result, just with that warning in mind. If it differed and nobody noticed, you might credit the harness for a win that really came from something else, so the result can't be trusted.
 -->
 
 ---
@@ -810,11 +862,11 @@ pull request or a release note.
 -->
 
 ---
-clicks: 3
+clicks: 2
 class: px-10 pt-6
 ---
 
-<div class="kicker">From pairs to a grid</div>
+<div class="kicker">From pairs to a grid<KeptPromise :n="[1, 4, 5]" /></div>
 
 ## Every configuration, on every story
 
@@ -827,10 +879,7 @@ class: px-10 pt-6
   <MatrixGrid />
 </div>
 
-<div class="flex gap-6 mt-4 items-baseline">
-  <div v-click="2" class="card-list text-sm"><span class="card-title">marked, never pooled silently</span><br><span class="chip">G</span> older hidden test <span class="chip">P</span> harness prompt changed <span class="chip">L</span> local run</div>
-  <div v-click="3" class="punchline !text-lg">The matrix says where to look. Compare explains one pair of cells.</div>
-</div>
+<div v-click="2" class="mt-5 punchline !text-lg">The matrix says where to look. Compare explains one pair of cells.</div>
 
 <!--
 A comparison answers one pair. The matrix answers "where should I even look?"
@@ -842,10 +891,6 @@ costs nothing.
 tickets. Each cell: how many runs passed the hidden test out of how many, median
 credits, median minutes. The last column pools passes, and only passes: tickets
 differ too much in size to average their cost.
-
-[click] Cells that would quietly mix two different measurements are marked: a
-run graded by an older hidden test, a harness prompt that changed between runs,
-a laptop run beside CI runs.
 
 [click] The matrix tells you where to look; compare explains one pair of cells.
 And notice: every cell says 1/1. Hold that thought.
@@ -887,9 +932,7 @@ ordinary for agents.
 from luck. And luck ships: a lucky X++ gets released, an unlucky one gets
 rejected, and both decisions look evidence-based.
 
-[click] The judge adds a second dice roll: the same run read twice gives the
-same substance with different scores. And one run that wanders for two hours
-becomes "the cost of that configuration".
+[click] On top of the agent's luck, the judge has some randomness of its own. Ask it to grade the exact same run twice and it will flag the same problems, but give slightly different scores. And if your only run happened to get stuck and take two hours, that one unlucky run becomes your official number for how slow and expensive that setup is. With three runs, you'd see it was an outlier and use the typical figure instead.
 
 [click] n=1 is cheap, and it's the right tool for a quick smoke test of a branch.
 It's not a verdict.
@@ -1003,146 +1046,75 @@ tickets. Not "it felt better in the demo".
 -->
 
 ---
-clicks: 6
+clicks: 5
 class: px-10 pt-6
 ---
 
-<div class="kicker">What the reports revealed</div>
+<div class="kicker">What the reports revealed · one codebase, three stories of rising complexity, two models</div>
 
-## The receipts
+## Four versions of ARCUS <KeptPromise :n="[5]" />
 
-<div class="mt-2">
-  <MatrixGrid :rows="['v-opus', 'x-opus', 'xpp-opus']" :columns="['A', 'B', 'C']" :step="$clicks" :late="['xpp-opus:B']" :total="false" />
+<div v-click="1" class="flex items-end gap-8">
+<table class="vt">
+  <thead><tr><th></th><th>vanilla</th><th>ARCUS 5</th><th>ARCUS 6</th><th>ARCUS 7</th></tr></thead>
+  <tbody>
+    <tr><td>credits vs vanilla</td><td>1×</td><td class="t-crit">12–19×</td><td class="t-good">1.5×</td><td class="t-warn">3.1×</td></tr>
+    <tr><td>time vs vanilla</td><td>1×</td><td class="t-crit">11–16×</td><td class="t-good">1.4×</td><td class="t-warn">2.7×</td></tr>
+    <tr><td>judge score</td><td>53 / 60</td><td>no gain</td><td>56 / 60</td><td>54 / 60</td></tr>
+  </tbody>
+</table>
+<div class="punchline !text-lg max-w-[16rem] pb-1">On the totals, ARCUS 7 looks like a step back from 6.</div>
 </div>
 
-<div class="grid grid-cols-2 gap-5 mt-5">
-  <SketchBox v-click="5" tone="s1" seed="rc-1">
-    <div class="card-title">first read · the baseline</div>
-    <div class="card-list">A vanilla session on Opus 5.5 passed every hidden test, at the lowest cost on every ticket. On the bug fix: <b>6 min, 56 credits</b>.</div>
-  </SketchBox>
-  <SketchBox v-click="6" tone="warn" seed="rc-2">
-    <div class="card-title">second read · the release</div>
-    <div class="card-list">X++ <b>halved</b> X's cost on the bug fix, exactly what its new size-based routing promised, and <span class="t-crit">broke</span> the 5-point story. One release, two verdicts.</div>
-  </SketchBox>
+<div v-click="2" class="mt-3">
+  <div class="card-title">now split every run at the start of review</div>
+  <StageSplit :step="Math.max(0, Math.min($clicks - 2, 1))" />
 </div>
 
-<div v-click="6" class="t-dim text-sm mt-3">Every cell says 1/1, which is exactly why the last two slides exist.</div>
+<div v-click="4" class="grid grid-cols-2 gap-4 mt-2">
+  <SketchBox tone="s1" seed="v-r6"><div class="card-list text-sm"><b>ARCUS 6's review:</b> 0 critical, 0 warnings, approved first time in 6 of 6. It saw a truncating-average bug, called it a suggestion, and shipped it.</div></SketchBox>
+  <SketchBox tone="s5" seed="v-r7"><div class="card-list text-sm"><b>ARCUS 7's review:</b> 3 critical and 9 warnings in round one, real bugs fixed, including a divide-by-zero crash and that same average.</div></SketchBox>
+</div>
+
+<div v-click="5" class="mt-3 punchline !text-lg">The total said 7 was worse. By stage: cheaper to build, and a review that earns its cost.</div>
+
+<style>
+.vt { width: auto; }
+.vt td, .vt th { padding: 0.22rem 1.6rem 0.22rem 0 !important; }
+</style>
 
 <!--
-Here's the matrix for real, anonymised: three tickets, all on Opus 5.5.
+A lighter bench than benchmark-runner, but the same idea: one codebase, three
+stories of rising complexity, each run on two models, scored by a blind judge.
+Four versions: a vanilla session, and ARCUS 5, 6 and 7.
 
-[click] Vanilla: passes all three, at the lowest cost everywhere.
-[click] arcus X, our previous release: passes all three, at three to eight times
-the credits.
-[click] arcus X++, the new release.
-[click] And on Ticket B, the 5-point story: zero out of one.
+[click] The totals first. ARCUS 5, the version we built on a feeling, costs
+12 to 19 times a vanilla session and buys nothing. An earlier per-stage
+breakdown showed the orchestrator and subagents eating the credits, with the main
+session alone costing more than a whole vanilla run. That's what ARCUS 6 acted
+on: it went lean. Fewer subagents, more work in the lead session, like vanilla
+does. One and a half
+times vanilla, slightly better scores. ARCUS 7 decides between a direct and an
+orchestrated route, and replaced five specialist reviewers with two reviewers
+interrogating the change against a rubric. On the totals it's three times
+vanilla, twice ARCUS 6. It looks like a step back.
 
-[click] First read: the baseline was the surprise. A vanilla session on Opus 5.5
-did the bug fix in 6 minutes for 56 credits, and passed everything.
+[click] Now split each run at the start of the review. Plan and implement:
+ARCUS 7 is 19% cheaper and 18% faster than ARCUS 6 in all six runs, and
+cheaper than a whole vanilla session.
 
-[click] Second read: X++ did exactly what we built it to do on small tickets:
-size-based routing halved the cost of the bug fix, 465 credits down to 222. And it
-broke the bigger story. One release, two verdicts, and only a per-ticket view
-shows you both. And yes: every cell is 1/1. That's what slides 18 and 19 are for.
--->
+[click] The review is where the money went: 1,652 credits against 255.
+And vanilla has no review stage at all.
 
----
-clicks: 3
-class: px-10 pt-6
----
+[click] So what did it buy? ARCUS 6's review approved everything first time.
+It even saw a truncating-average bug, called it a suggestion, and shipped it.
+ARCUS 7's review found 3 critical issues and 9 warnings in round one, and they
+were fixed: a divide-by-zero crash, that same average.
 
-<div class="kicker">What the reports revealed</div>
-
-## The judge was wrong
-
-<div class="grid grid-cols-2 gap-6 mt-4">
-  <SketchBox v-click="1" tone="s6" seed="jw-llm">
-    <div class="card-title">the LLM-only comparison · Ticket B, X vs X++</div>
-    <div class="punchline !text-2xl">"X++ did better."</div>
-    <div class="card-list mt-2">
-      <div>full-width calibration samples</div>
-      <div>plan ranges that don't overlap</div>
-      <div>a guard against concurrent runs</div>
-    </div>
-    <div class="t-dim text-sm mt-2">medium confidence · all true, all well argued</div>
-  </SketchBox>
-  <SketchBox v-click="2" tone="crit" seed="jw-test">
-    <div class="card-title">the hidden test</div>
-    <div class="punchline !text-2xl"><span class="t-crit">X++ 0/5.</span> X 5/5.</div>
-    <div class="card-list mt-2">
-      <div>every call to the new endpoint: <code class="t-crit">403 Forbidden</code></div>
-      <div>a security rule for the new path was never added</div>
-      <div>the code was elegant, and unreachable</div>
-    </div>
-  </SketchBox>
-</div>
-
-<div v-click="3" class="mt-7 punchline !text-2xl">Code grades. Models explain.</div>
-<div v-click="3" class="card-list t-dim mt-1">That's why the grade is a given the judge may explain but never overturn.</div>
-
-<!--
-This is my favourite finding, because it's the one that justifies the design.
-
-[click] Before the hidden test existed, an LLM compared X and X++ on Ticket B and
-said X++ did better. Its reasons were real: better sampling, non-overlapping
-ranges, a guard against concurrent runs. Medium confidence, well argued.
-
-[click] Then we added the hidden test. X++: zero out of five. Every call to its
-new endpoint returned 403, because nobody added a security rule for the new path.
-Beautiful code that no request could ever reach. X passed all five.
-
-[click] So: code grades, models explain. That's why, in this framework, the judge
-is handed the grade as a given. It may explain it. It may never overturn it.
--->
-
----
-clicks: 3
-class: px-10 pt-6
----
-
-<div class="kicker">What the reports revealed</div>
-
-## Where the credits went
-
-<StageSpend :step="Math.min($clicks, 2)" class="mt-1" />
-
-<div v-click="3" class="grid grid-cols-[1fr_1.4fr] gap-6 mt-3">
-  <div class="card-list">
-    <div class="card-title">and the reviewers?</div>
-    They found a real duplicate-key bug, and <b>approved the change anyway</b>: one or two warnings counts as "approved". The value was real; it was lost at approval.
-  </div>
-  <div>
-    <div class="card-title">leads for slimming arcus, each traceable to a line in a report</div>
-    <span class="chip">orchestrator on opus-5: 9.3 credits / call vs 4.2</span>
-    <span class="chip">pass paths, not file contents</span>
-    <span class="chip">remove redundant gates</span>
-    <span class="chip">generate once, not repeatedly</span>
-    <span class="chip">merge overlapping reviewers</span>
-    <span class="chip">make review findings blocking</span>
-  </div>
-</div>
-
-<!--
-Across tickets, arcus spent up to eight times the credits of a vanilla session.
-Here's one run, Ticket B, taken apart by stage.
-
-The main session, the implementation orchestrator on Opus 5, five workers on
-Sonnet, four review agents, and commits.
-
-[click] Now the whole vanilla run on the same ticket, same scale.
-
-[click] arcus's main session alone costs more than the entire vanilla run. And
-the orchestrator charges about 9 credits per tool call, against 4 for the
-vanilla session.
-
-[click] And the review stage? It found a real bug, a duplicate-key failure on
-replan, and approved anyway, because "one or two warnings" counts as approved.
-The value was real; we threw it away at the approval step.
-
-Every chip on the right is a lead we can trace to a line in a report: model
-choice for subagents, passing paths instead of contents, redundant gates,
-generating the same content more than once, overlapping reviewers, and making review
-findings blocking. Evidence for the next release, not a feeling.
+[click] The total said 7 was worse. Split by stage, it implements more cheaply,
+and its review finally earns its cost. Only a per-stage view shows you that.
+(Caveat if asked: the pre-review credits for the lead session are modelled from
+context size; wall time and subagent credits are exact. One run per cell.)
 -->
 
 ---
@@ -1186,7 +1158,7 @@ class: px-10 pt-6
   <SketchBox v-click="1" tone="s1" seed="nx-suites"><div class="card-title">🧪 two suites</div><div class="card-list text-sm">A <b>regression</b> suite for daily work, and a <b>held-out</b> suite run only at release, so arcus is never tuned to the tickets it's graded on.</div></SketchBox>
   <SketchBox v-click="2" tone="s4" seed="nx-factory"><div class="card-title">🏭 a fixture factory</div><div class="card-list text-sm">Mine merged PRs. An agent drafts the hidden test, a human reviews it. Revert the human's PR hunk by hunk: each revert must turn a test red.</div></SketchBox>
   <SketchBox v-click="3" tone="s3" seed="nx-runtime"><div class="card-title">🔌 any runtime</div><div class="card-list text-sm">Copilot CLI today. Claude Code, Codex and OpenCode behind the same fixture and the same judge.</div></SketchBox>
-  <SketchBox v-click="4" tone="s6" seed="nx-telemetry"><div class="card-title">📡 behavioural telemetry</div><div class="card-list text-sm">Which skills loaded vs were available. How often a review finding changed the code. Stage-level benchmarks.</div></SketchBox>
+  <SketchBox v-click="4" tone="s6" seed="nx-telemetry"><div class="card-title">📐 stage-wise outcomes</div><div class="card-list text-sm">Grade each stage, not just the final patch: what plan, implement and review each cost and each added. Score the code before and after review to measure the review's lift.</div></SketchBox>
   <SketchBox v-click="5" tone="s5" seed="nx-judge"><div class="card-title">⚖️ a calibrated judge</div><div class="card-list text-sm">Agreement against a human panel, and judges from other vendors to rule out self-preference.</div></SketchBox>
   <SketchBox v-click="6" tone="good" seed="nx-ci"><div class="card-title">🔁 continuous benchmarking</div><div class="card-list text-sm">Every plugin PR benchmarked like a performance test. The matrix is the release dashboard; the gate is a dashboard, not a meeting.</div></SketchBox>
 </div>
@@ -1205,8 +1177,10 @@ one hunk at a time; every revert must turn a test red.
 [click] Any runtime: Claude Code, Codex and OpenCode behind the same fixtures and
 the same judge.
 
-[click] Behavioural telemetry: which skills actually loaded, and how often a
-review finding actually changed the code.
+[click] Stage-wise outcomes: benchmark each stage of the harness, not just the
+whole thing. Score the code before and after the review, so the review's lift is
+measured rather than inferred. The ARCUS 6 vs 7 story only showed up once we split
+by stage.
 
 [click] A calibrated judge, checked against humans and against judges from other
 vendors.
@@ -1232,6 +1206,7 @@ class: px-14 pt-10
 <div v-click="5" class="mt-8">
   <div class="punchline">If the answers aren't on the result, it's a feeling.</div>
   <div class="card-list t-dim mt-1">Your eval harness is part of your agentic harness. Build it first.</div>
+  <div class="card-list t-dim mt-1">To be fair, lets TDD everywhere !!</div>
 </div>
 
 <!--

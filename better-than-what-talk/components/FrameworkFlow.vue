@@ -48,7 +48,7 @@ const fade = (layer: Layer) => ({ opacity: bright(layer) ? 1 : 0.16 })
 
 // ── geometry ───────────────────────────────────────────────────────────────
 const F = { x: 20, y: 30, w: 190, h: 220 } // fixture
-const V = { x: 20, y: 268, w: 210, h: 52 } // vault of answer keys
+const V = { x: 20, y: 268, w: 225, h: 52 } // vault of answer keys
 const A = { x: 250, y: 30, w: 200, h: 175 } // agent machine
 const J = { x: 530, y: 30, w: 410, h: 220 } // judge machine
 const G = { x: 545, y: 68, w: 115, h: 100 } // grade
@@ -190,11 +190,11 @@ watch(() => [props.step, props.focus?.join(',')], draw)
         <g :ref="setLayer('fixture')" />
         <text :x="F.x + 14" :y="F.y + 24" class="ff__title">FIXTURE</text>
         <text :x="F.x + 18" :y="F.y + 56" class="ff__row">story, as written</text>
-        <text :x="F.x + 18" :y="F.y + 82" class="ff__row">● pre-PR commit</text>
+        <text :x="F.x + 18" :y="F.y + 82" class="ff__row">● base commit</text>
         <g class="ff-move" :style="{ transform: at(1) ? 'translate(0px, 168px)' : 'none' }">
-          <text :x="F.x + 18" :y="F.y + 108" class="ff__row ff__row--key">🔒 at-PR</text>
+          <text :x="F.x + 18" :y="F.y + 108" class="ff__row ff__row--key">🔒 reference</text>
         </g>
-        <g class="ff-move" :style="{ transform: at(1) ? 'translate(80px, 140px)' : 'none' }">
+        <g class="ff-move" :style="{ transform: at(1) ? 'translate(94px, 140px)' : 'none' }">
           <text :x="F.x + 18" :y="F.y + 136" class="ff__row ff__row--key">🔒 hidden test</text>
         </g>
         <text :x="F.x + 18" :y="F.y + 164" class="ff__row">✓ quality gate</text>
@@ -207,7 +207,7 @@ watch(() => [props.step, props.focus?.join(',')], draw)
         <g :ref="setLayer('run')" />
         <template v-if="at(1)">
           <text :x="A.x + 14" :y="A.y + 24" class="ff__title ff-fade">AGENT MACHINE</text>
-          <text :x="A.x + 24" :y="A.y + 58" class="ff__row ff-fade">pre-PR copy + story</text>
+          <text :x="A.x + 24" :y="A.y + 58" class="ff__row ff-fade">base copy + story</text>
         </template>
         <template v-if="at(2)">
           <text :x="A.x + 24" :y="A.y + 86" class="ff__badge ff-fade">harness@model</text>

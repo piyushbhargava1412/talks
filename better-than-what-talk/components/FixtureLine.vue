@@ -3,13 +3,13 @@ import { onMounted, ref, watch } from 'vue'
 import { arrow, palette, pencil, seedOf, sketch } from '../utils/sketch'
 
 /**
- * The fixture as a git line: the commit the human started from (pre-PR) and
- * the human's merged change (at-PR), with what the two answer keys say at
+ * The fixture as a git line: the commit the human started from (the base) and
+ * the human's merged change (the reference), with what the two answer keys say at
  * each end, and the agent branching off the same starting point.
  *
  * Bind `step` to $clicks: 0 the two commits · 1 the hidden test row (red at
- * pre-PR, green at at-PR) · 2 the quality gate row (green at both) · 3 the
- * agent's branch from pre-PR.
+ * the base, green on the reference) · 2 the quality gate row (green at both) · 3 the
+ * agent's branch from the base.
  */
 const props = withDefaults(defineProps<{ step?: number }>(), { step: 3 })
 
@@ -51,12 +51,12 @@ watch(() => props.step, draw)
 
 <template>
   <svg :viewBox="`0 0 ${W} ${H}`" class="fl" role="img"
-    aria-label="The human's pull request goes from the pre-PR commit to the at-PR commit. The hidden test fails at pre-PR and passes at at-PR; the quality gate passes at both. The agent branches from the same pre-PR commit.">
+    aria-label="The human's pull request goes from the base commit to the reference commit. The hidden test fails on the base and passes on the reference; the quality gate passes on both. The agent branches from the same base commit.">
     <g ref="layer" />
 
-    <text :x="PRE" :y="Y + 40" class="fl__name" text-anchor="middle">pre-PR</text>
+    <text :x="PRE" :y="Y + 40" class="fl__name" text-anchor="middle">base</text>
     <text :x="PRE" :y="Y + 56" class="fl__note" text-anchor="middle">where the human started</text>
-    <text :x="AT" :y="Y + 40" class="fl__name" text-anchor="middle">at-PR</text>
+    <text :x="AT" :y="Y + 40" class="fl__name" text-anchor="middle">reference</text>
     <text :x="AT" :y="Y + 56" class="fl__note" text-anchor="middle">the human's merged change</text>
     <text :x="(PRE + AT) / 2" :y="Y - 34" class="fl__tag" text-anchor="middle">HUMAN-CODED, HUMAN-REVIEWED PR · THE ANSWER KEY</text>
 
