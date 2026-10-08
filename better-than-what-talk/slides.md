@@ -8,6 +8,9 @@ info: |
 
   AVEVA India R&D Meetup, Hyderabad — 9 Oct 2026.
 class: text-left
+# seriph's cover layout otherwise pulls a random Unsplash photo behind the
+# title; pin it to the canvas colour so the dot grid and the scale show through.
+background: '#1a1a19'
 lineNumbers: false
 drawings:
   persist: false
@@ -24,6 +27,9 @@ fonts:
   weights: '400'
 ---
 
+<div class="grid grid-cols-[1.25fr_1fr] gap-6 items-center">
+<div>
+
 <div class="kicker">AVEVA India R&amp;D Meetup · Hyderabad · 9 Oct 2026</div>
 
 <h1 class="!text-6xl mt-3 mb-5">Better than what?</h1>
@@ -38,6 +44,10 @@ fonts:
 <span>Tech Principal</span>
 <span class="opacity-40">·</span>
 <img src="/images/thoughtworks-logo.svg" class="assoc-logo" alt="Thoughtworks" />
+</div>
+
+</div>
+<BalanceScale class="-mr-4" />
 </div>
 
 <style>
@@ -597,7 +607,7 @@ model. No model ever does arithmetic.
 
 ---
 clicks: 3
-class: px-10 pt-6
+class: px-10 pt-4
 ---
 
 <div class="zoom-head">
@@ -640,7 +650,7 @@ class: px-10 pt-6
   </SketchBox>
 </div>
 
-<div v-click="3" class="mt-5">
+<div v-click="3" class="mt-3">
   <div class="card-title">then code checks the judge</div>
   <div class="flex flex-wrap gap-1">
     <span class="chip">✓ every cited file exists</span>
@@ -1222,20 +1232,42 @@ tells you what everything else has to beat.
 -->
 
 ---
-class: px-14 pt-12
+class: px-14 pt-10
 ---
 
-<div class="grid grid-cols-[1.4fr_1fr] gap-10 items-center h-[420px]">
+<h1 class="!text-6xl">Questions?</h1>
+
+<div class="grid grid-cols-2 gap-10 items-center mt-2">
   <div>
-    <div class="kicker">Thank you</div>
-    <h1 class="!text-6xl mt-3">Questions?</h1>
-    <div class="card-list text-lg mt-6">Piyush Bhargava · Thoughtworks</div>
+    <div class="thanks">Thank you</div>
+    <img src="/images/qr-linkedin.svg" class="w-36 rounded bg-white p-2 mt-5" alt="LinkedIn QR code" />
+    <div class="kicker mt-2">connect on LinkedIn</div>
+    <div class="mt-6 flex items-center gap-3 text-base !text-[var(--ink-3)]">
+      <span>Piyush Bhargava</span>
+      <span class="opacity-40">·</span>
+      <img src="/images/thoughtworks-logo.svg" class="assoc-logo" alt="Thoughtworks" />
+    </div>
   </div>
-  <div class="text-center">
-    <img src="/images/qr-linkedin.svg" class="w-44 mx-auto rounded bg-white p-2" alt="LinkedIn QR code" />
-    <div class="kicker mt-3">connect on LinkedIn</div>
-  </div>
+  <BalanceScale settled />
 </div>
+
+<style>
+.thanks {
+  font-family: var(--slidev-theme-fontFamily-serif, cursive);
+  font-size: 2.2rem;
+  line-height: 1.2;
+  color: var(--ink-2);
+}
+/* Same white card as the title slide's logo. */
+.assoc-logo {
+  width: 85px;
+  height: auto;
+  display: block;
+  background: #fff;
+  padding: 0.45rem 0.65rem;
+  border-radius: 0.3rem;
+}
+</style>
 
 <!--
 Thank you. Happy to take questions.
