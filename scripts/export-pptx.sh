@@ -3,8 +3,11 @@
 # native click animations — see build-pptx.py for how the deck is put
 # together, and the README for what survives the conversion.
 #
-# usage: scripts/export-pptx.sh <talk-dir>
+# usage: scripts/export-pptx.sh <talk-dir> [--no-notes]
 #   e.g. scripts/export-pptx.sh better-than-what-talk
+#        scripts/export-pptx.sh better-than-what-talk --no-notes
+#
+# Speaker notes are included by default; --no-notes leaves them out.
 #
 # Writes <talk-dir>/<title>.pptx (gitignored), named from the talk's
 # `title:` frontmatter. Needs pnpm and uv on PATH.
@@ -13,12 +16,22 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-if [ $# -ne 1 ]; then
-  echo "usage: $0 <talk-dir>" >&2
+NOTES_FLAG=()
+TALK_ARG=""
+for arg in "$@"; do
+  case "$arg" in
+    --no-notes) NOTES_FLAG=(--no-notes) ;;
+    -*) echo "unknown option: $arg" >&2; exit 1 ;;
+    *) [ -z "$TALK_ARG" ] || { echo "usage: $0 <talk-dir> [--no-notes]" >&2; exit 1; }
+       TALK_ARG="$arg" ;;
+  esac
+done
+if [ -z "$TALK_ARG" ]; then
+  echo "usage: $0 <talk-dir> [--no-notes]" >&2
   exit 1
 fi
 
-TALK="$ROOT/${1%/}"
+TALK="$ROOT/${TALK_ARG%/}"
 if [ ! -f "$TALK/slides.md" ]; then
   echo "No slides.md in $TALK — expected a talk folder." >&2
   exit 1
@@ -70,5 +83,5 @@ export_slides() {
 export_slides --format pptx --output "$WORK/raw.pptx"
 export_slides --format png --output "$WORK/png"
 
-uv run --with python-pptx "$ROOT/scripts/build-pptx.py" "$WORK/png" "$WORK/raw.pptx" "$OUT"
+uv run --with python-pptx "$ROOT/scripts/build-pptx.py" "$WORK/png" "$WORK/raw.pptx" "$OUT" ${NOTES_FLAG[@]+"${NOTES_FLAG[@]}"}
 echo "Done: $OUT"

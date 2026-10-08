@@ -10,10 +10,11 @@ slide-left).
 
 Normally run via scripts/export-pptx.sh, which does both exports.
 
-usage: uv run --with python-pptx scripts/build-pptx.py <png_dir> <raw_slidev.pptx> <out.pptx>
+usage: uv run --with python-pptx scripts/build-pptx.py <png_dir> <raw_slidev.pptx> <out.pptx> [--no-notes]
   png_dir: Slidev `--format png --with-clicks` export, named NNN-CC.png;
            only its names are used, for the step -> slide grouping. The
            images come from the PPTX itself so stacked steps line up exactly.
+  --no-notes: leave the speaker notes out of the deck.
 """
 import io
 import sys
@@ -22,8 +23,11 @@ from pathlib import Path
 
 from lxml import etree
 from pptx import Presentation
+from pptx.opc.constants import RELATIONSHIP_TYPE as RT
 
-png_dir, raw_path, out_path = Path(sys.argv[1]), sys.argv[2], sys.argv[3]
+args = [a for a in sys.argv[1:] if a != "--no-notes"]
+keep_notes = len(args) == len(sys.argv) - 1
+png_dir, raw_path, out_path = Path(args[0]), args[1], args[2]
 
 prs = Presentation(raw_path)
 pngs = sorted(png_dir.glob("*.png"))
@@ -87,5 +91,14 @@ for i in sorted(drop, reverse=True):
     prs.part.drop_rel(sld_id.rId)
     sld_ids.remove(sld_id)
 
+# Unhook each slide from its notes page; like the dropped slides, the
+# orphaned notes parts are not written on save.
+if not keep_notes:
+    for slide in prs.slides:
+        for rid, rel in list(slide.part.rels.items()):
+            if rel.reltype == RT.NOTES_SLIDE:
+                slide.part.drop_rel(rid)
+
 prs.save(out_path)
-print(f"{len(groups)} slides, {len(pngs)} click steps -> {out_path}")
+notes = "with" if keep_notes else "without"
+print(f"{len(groups)} slides, {len(pngs)} click steps, {notes} speaker notes -> {out_path}")

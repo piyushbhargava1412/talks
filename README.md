@@ -65,6 +65,13 @@ organizer presenting every talk from one laptop.
 scripts/export-pptx.sh <talk-folder>
 ```
 
+To leave the speaker notes out, for example when handing the deck to
+someone else:
+
+```bash
+scripts/export-pptx.sh <talk-folder> --no-notes
+```
+
 This writes `<talk-folder>/<title>.pptx`. It needs `pnpm` and
 [`uv`](https://docs.astral.sh/uv/). On a talk's first export it adds
 `playwright-chromium` as a dev dependency and downloads the headless
@@ -78,7 +85,7 @@ What you get:
   in PowerPoint, so the clicker steps through the slide just as it does in
   Slidev, forwards and backwards.
 - A push transition between slides, matching Slidev's `slide-left`.
-- Speaker notes, shown in presenter view.
+- Speaker notes, shown in presenter view (unless you pass `--no-notes`).
 
 What you lose:
 
